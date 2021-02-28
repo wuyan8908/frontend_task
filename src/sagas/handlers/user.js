@@ -1,6 +1,8 @@
 import { call, put} from 'redux-saga/effects';
-import { requestGetUsers } from '../requests/user';
-import { setUser } from '../../store/auth'
+import { requestGetUsers,requestGetUserDetail,requestUserCreate, requestUserEdit, requestUserDelete } from '../requests/user';
+import { setUser} from '../../store/auth'
+import {setUserDetail } from '../../store/auth'
+import history from '../../history';
 
 export function* handleGetUser(action) {
     try{
@@ -8,6 +10,55 @@ export function* handleGetUser(action) {
         const data = res.data.users;
         //console.log(data);
         yield put(setUser(data));
+    }
+    catch{
+        console.error();
+    }
+}
+
+export function* handleGetUserDetail(action) {
+    try{
+        const res = yield call(requestGetUserDetail,action.id,action.token);
+        const data = res.data;
+        //console.log(data);
+        yield put(setUserDetail(data));
+    }
+    catch{
+        console.error();
+    }
+}
+
+export function* handleUserCreate(action) {
+    try{
+        const res = yield call(requestUserCreate,action.data,action.token);
+        const data = res.data;
+        history.push('/users')
+        //yield put(setUserDetail(data));
+    }
+    catch{
+        console.error();
+    }
+}
+
+export function* handleUserEdit(action) {
+    try{
+        const res = yield call(requestUserEdit,action.id,action.data,action.token);
+        const data = res.data;
+        console.log('fpush',data);
+        history.push('/users');
+        //yield put(setUserDetail(data));
+    }
+    catch{
+        console.error();
+    }
+}
+
+export function* handleGetUserDelete(action) {
+    try{
+        const res = yield call(requestUserDelete,action.id,action.token);
+        const data = res.data;
+        console.log('fdelete',data);
+        history.push('/users');
     }
     catch{
         console.error();

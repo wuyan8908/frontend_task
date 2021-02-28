@@ -1,5 +1,6 @@
-import React, {memo,useEffect} from 'react'
+import React,{memo,useEffect} from 'react'
 import { useDispatch,  useSelector } from 'react-redux';
+import { requestUserEdit,requestUserDetail } from '../../store/auth';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import Avatar from '@material-ui/core/Avatar';
@@ -15,14 +16,13 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import {requestUserCreate} from '../../store/auth';
 
 
-
-
-function UserCreate () {
+function EditForm (props) {
     const dispatch = useDispatch();
     const token = useSelector(state => state.token);
+    const data = props.data;
+    const id = data.users.id;
     const useStyles = makeStyles((theme) => ({
         paper: {
           marginTop: theme.spacing(8),
@@ -68,27 +68,30 @@ function UserCreate () {
           .max(50, 'slack username should be of maxmum 50 characters length')
           .required('slack username is required'),
       });
-      
+      let activeS = '';
+      if(data.users.active){
+        activeS = 'true';
+      }
+      else{
+        activeS = 'false';
+      }
       const formik = useFormik({
         initialValues: {
-          email: "",
-          first_name: "",
-          last_name: "",
-          jobs_count: 0,
-          active: false,
-          slack_username: ""
+          email: data.users.email,
+          first_name: data.users.first_name,
+          last_name: data.users.last_name,
+          jobs_count: data.users.jobs_count,
+          active: activeS,
+          slack_username: data.users.slack_username
         },
         validationSchema: validationSchema,
         onSubmit: (values) => {
           const data = JSON.stringify(values);
-          dispatch(requestUserCreate(data,token))
+          dispatch(requestUserEdit(id,data,token))
         },
       });
     const classes = useStyles();
-
-
-
-
+    
     return (
         <Container component="main" maxWidth="xs">
         <CssBaseline />
@@ -97,7 +100,7 @@ function UserCreate () {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Creat new User
+            Edit User
           </Typography>
           <form className={classes.form} onSubmit={formik.handleSubmit}>
             <Grid container spacing={2}>
@@ -192,11 +195,6 @@ function UserCreate () {
                   helperText={formik.touched.slack_username && formik.errors.slack_username}
                 />
               </Grid>
-              {/* <Grid item xs={12}>
-                <FormControlLabel  control={<Checkbox value="true" color="primary" />}
-                    label="Remember me"
-                />
-              </Grid> */}
             </Grid>
             <Button
               type="submit"
@@ -205,12 +203,13 @@ function UserCreate () {
               color="primary"
               className={classes.submit}
             >
-              Sign Up
+              Submit
             </Button>
           </form>
         </div>
       </Container>
         )
+            
 };
 
-export default memo(UserCreate);
+export default memo(EditForm);

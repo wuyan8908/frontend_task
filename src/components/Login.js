@@ -77,6 +77,7 @@ function Login(props) {
     validationSchema: validationSchema,
     onSubmit: (values) => {
       const data = JSON.stringify(values);
+      console.log('login',data);
       login(data, dispatch);
     },
   });
