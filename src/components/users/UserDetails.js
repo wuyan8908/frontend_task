@@ -14,6 +14,7 @@ function UserDetails(props) {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(requestUserDetail(id, token));
+    // eslint-disable-next-line
   }, [dispatch]);
   const data = useSelector((state) => state.userDetail);
   if (data) {

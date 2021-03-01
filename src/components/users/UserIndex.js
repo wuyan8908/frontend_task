@@ -131,6 +131,7 @@ function UserIndex() {
   // const token = cookie.load('token');
   useEffect(() => {
     dispatch(requestUser(token));
+    // eslint-disable-next-line
   }, [dispatch]);
   // dispatch(requestUser(token))
   const user = useSelector((state) => state.userList);

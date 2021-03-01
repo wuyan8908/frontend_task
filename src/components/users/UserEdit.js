@@ -9,6 +9,7 @@ function UserEdit(props) {
   const { id } = props.match.params;
   useEffect(() => {
     dispatch(requestUserDetail(id, token));
+    // eslint-disable-next-line
   }, [dispatch]);
   const data = useSelector((state) => state.userDetail);
 
