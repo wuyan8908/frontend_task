@@ -15,9 +15,9 @@ jobs:
       - run: yarn install
 
       - save_cache:
-        paths:
-          - node_modeules
-        key: v1-dependencies-{{ checksum "package.json"}}
+          paths:
+             - node_modeules
+          key: v1-dependencies-{{ checksum "package.json"}}
 
       - run: yarn test
       - run: yarn build
