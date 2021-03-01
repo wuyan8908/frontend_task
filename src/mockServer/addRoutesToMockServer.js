@@ -34,7 +34,7 @@ const addRoutesToMockServer = (mockServer) => {
 
     const attributes = JSON.parse(request.requestBody);
     const totalUsers = schema.users.all().models.length;
-    const idAppendedAttributes = { ...attributes, id: totalUsers+1 };
+    const idAppendedAttributes = { ...attributes, id: totalUsers + 1 };
     return schema.users.create(idAppendedAttributes);
   });
   mockServer.patch('/users/:id', (schema, request) => {
