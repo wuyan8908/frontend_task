@@ -1,4 +1,4 @@
-import React, {memo,useEffect} from 'react'
+import React, {memo} from 'react'
 import { useDispatch,  useSelector } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import {requestUserDelete} from '../../store/auth'

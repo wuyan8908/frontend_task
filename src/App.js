@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router, Route } from 'react-router-dom';
+import { HashRouter, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Login from './components/Login';
 import UserIndex from './components/users/UserIndex';
@@ -15,7 +15,7 @@ export default function App() {
   const token = useSelector(state => state.token);
   return (
     <div className="ui container">
-      <Router history={history}>
+      <HashRouter history={history}>
           <div>
           <Header key={token}/>
           <Route path="/" exact component={Login}/>
@@ -25,7 +25,7 @@ export default function App() {
           <Route path="/users/detail/:id" exact component={UserDetails}/> 
           <Route path="/users/delete/:id" exact component={UserDelete}/>  
         </div>
-      </Router>
+      </HashRouter>
     </div>
   );
 }

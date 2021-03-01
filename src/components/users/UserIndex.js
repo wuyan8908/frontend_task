@@ -4,8 +4,6 @@ import { requestUser } from '../../store/auth';
 import './UserIndex.css'
 import CheckIcon from '@material-ui/icons/Check';
 import ClearIcon from '@material-ui/icons/Clear';
-import Container from '@material-ui/core/Container';
-import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
@@ -51,10 +49,13 @@ function createData(id, email, jobCount, active) {
   }
   
   const headCells = [
-    { id: 'id', numeric: false, disablePadding: true, label: 'ID' },
-    { id: 'email', numeric: false, disablePadding: false, label: 'Email' },
-    { id: 'jobCount', numeric: true, disablePadding: false, label: 'Job Count' },
-    { id: 'active', numeric: false, disablePadding: false, label: 'Active' },
+    { id: 'id',  label: 'ID' },
+    { id: 'email', label:'Email' },
+    { id: 'jobCount',  label: 'Job Count' },
+    { id: 'active',  label: 'Active' },
+    { id: '',  label: '' },
+    { id: '',  label: '' },
+    { id: '', label: '' },
   ];
   
   function EnhancedTableHead(props) {
@@ -71,13 +72,14 @@ function createData(id, email, jobCount, active) {
             <TableCell
               key={headCell.id}
               align={'left'}
-              padding={headCell.disablePadding ? 'none' : 'default'}
+              padding={'default'}
               sortDirection={orderBy === headCell.id ? order : false}
             >
               <TableSortLabel
                 active={orderBy === headCell.id}
                 direction={orderBy === headCell.id ? order : 'asc'}
                 onClick={createSortHandler(headCell.id)}
+                hideSortIcon={headCell.id === ""}
               >
                 {headCell.label}
                 {orderBy === headCell.id ? (
@@ -186,27 +188,32 @@ function UserIndex(props) {
                             {stableSort(rows, getComparator(order, orderBy))
                                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                 .map((row, index) => {
-                                const labelId = `${index}`;
                                 return (
                                     <TableRow
                                     hover
                                     key={row.name}
                                     >
-                                    <TableCell component="th" id={labelId} scope="row" padding="none">
+                                    <TableCell align="left" >
                                         {row.id}
                                     </TableCell>
                                     <TableCell align="left">{row.email}</TableCell>
                                     <TableCell align="left">{row.jobCount}</TableCell>
                                     <TableCell align="left">{row.active ? <CheckIcon/> : <ClearIcon/>}</TableCell>
-                                    <Link to={`/users/detail/${row.id}`}>
-                                      View
-                                    </Link>
+                                    <TableCell align="left">
+                                        <Link to={`/users/detail/${row.id}`}>
+                                            View
+                                        </Link>
+                                    </TableCell>
+                                    <TableCell align="left">
                                     <Link to={`/users/edit/${row.id}`}>
                                       Edit
                                     </Link>
+                                    </TableCell>
+                                    <TableCell align="left">
                                     <Link to={`/users/delete/${row.id}`}>
                                       Delete
                                     </Link>
+                                    </TableCell>
                                     </TableRow>
                                 );
                                 })}
@@ -226,8 +233,8 @@ function UserIndex(props) {
                     <Link to={`/users/create`}>
                         Create
                     </Link>
-                    </div>
-                );
+                </div>
+                )     
     }
      
 } 

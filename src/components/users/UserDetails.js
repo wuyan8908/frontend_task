@@ -3,8 +3,8 @@ import { useDispatch,  useSelector } from 'react-redux';
 import { requestUserDetail } from '../../store/auth';
 import CheckIcon from '@material-ui/icons/Check';
 import ClearIcon from '@material-ui/icons/Clear';
-//import history from './history';
 import { Link } from 'react-router-dom';
+import { Container } from '@material-ui/core';
 
 
 function UserDetails (props) {
@@ -18,6 +18,7 @@ function UserDetails (props) {
     const data = useSelector(state => state.userDetail);
     if (data){    
             return(
+                <Container maxWidth="xs"> 
                 <div className="item" key={data.users.id}>
                     <div>
                         id: {data.users.id}
@@ -44,6 +45,7 @@ function UserDetails (props) {
                         Back to List
                     </Link>
                 </div>
+                </Container>
             )
     }
     //console.log(props.match.params.id);

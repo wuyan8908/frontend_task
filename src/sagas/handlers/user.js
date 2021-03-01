@@ -8,7 +8,6 @@ export function* handleGetUser(action) {
     try{
         const res = yield call(requestGetUsers, action.token);
         const data = res.data.users;
-        //console.log(data);
         yield put(setUser(data));
     }
     catch{
@@ -20,7 +19,6 @@ export function* handleGetUserDetail(action) {
     try{
         const res = yield call(requestGetUserDetail,action.id,action.token);
         const data = res.data;
-        //console.log(data);
         yield put(setUserDetail(data));
     }
     catch{
@@ -30,10 +28,8 @@ export function* handleGetUserDetail(action) {
 
 export function* handleUserCreate(action) {
     try{
-        const res = yield call(requestUserCreate,action.data,action.token);
-        const data = res.data;
+        yield call(requestUserCreate,action.data,action.token);
         history.push('/users')
-        //yield put(setUserDetail(data));
     }
     catch{
         console.error();
@@ -46,7 +42,6 @@ export function* handleUserEdit(action) {
         const data = res.data;
         console.log('fpush',data);
         history.push('/users');
-        //yield put(setUserDetail(data));
     }
     catch{
         console.error();
