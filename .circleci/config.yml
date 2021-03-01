@@ -13,13 +13,13 @@ jobs:
           keys:
             - v1-dependencies-{{ checksum "package.json"}}
             - v1-dependencies-
-      - run: npm install
+      - run: yarn install
 
-      - run: npm run build
+      - run: ls
 
       - save_cache:
           paths:
              - node_modeules
           key: v1-dependencies-{{ checksum "package.json"}}
-          
+
       - run: yarn deploy
