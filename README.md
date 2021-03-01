@@ -6,15 +6,15 @@ This is a Readme file for React frontend development task.
 2. to test the project in localhost. Please follow the code bellow:
   git clone https://github.com/wuyan8908/frontend_task.git
   - Open Terminal and Change to project folder using the command bellow:
-    yarn install
+    - yarn install
   - to test in localhost using:
-    yarn start
+    - yarn start
   - you also can run the project after build with:
-    yarn build
+    - yarn build
   - add testing server:
-    yarn global add serve
+    - yarn global add serve
   - test the project build in localhost:
-    serve -s build 
+    - serve -s build 
 
 ## Task Check List
 
