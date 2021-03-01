@@ -38,7 +38,7 @@ function Header() {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
-            Demo
+            Yan Wu - React Task
           </Typography>
           <Button color="inherit" onClick={() => dosignOut(dispatch)}>
             Logout
