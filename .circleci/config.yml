@@ -13,9 +13,11 @@ jobs:
           keys:
             - v1-dependencies-{{ checksum "package.json"}}
             - v1-dependencies-
+
+      - run: yarn eject        
       - run: yarn install
 
-      - run: ls
+      - run: yarn build 
 
       - save_cache:
           paths:
