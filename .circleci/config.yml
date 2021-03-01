@@ -23,12 +23,12 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json"}}
 
       - aws-s3/sync:
-        arguments: |
-          --acl public-read \
-          --cache-control "max-age=86400"
-        from: build/
-        to: 's3://react-yanwu-aws-host'
+          arguments: |
+            --acl public-read \
+            --cache-control "max-age=86400"
+          from: build/
+          to: 's3://react-yanwu-aws-host'
         
 orbs:
-  aws-s3: circleci/aws-s3@x.y
-version: 2.1
+  aws-s3: circleci/aws-s3@2.0.0
+
