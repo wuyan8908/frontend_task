@@ -16,12 +16,16 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
 import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
 import { requestUser } from '../../store/auth';
+import history from '../../history';
 
 function createData(id, email, jobCount, active) {
   return { id, email, jobCount, active };
 }
-
+function onCreateClick() {
+  history.push('/users/create');
+}
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
     return -1;
@@ -128,12 +132,10 @@ const useStyles = makeStyles((theme) => ({
 function UserIndex() {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.token);
-  // const token = cookie.load('token');
   useEffect(() => {
     dispatch(requestUser(token));
     // eslint-disable-next-line
   }, [dispatch]);
-  // dispatch(requestUser(token))
   const user = useSelector((state) => state.userList);
   const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
@@ -215,7 +217,9 @@ function UserIndex() {
             onChangeRowsPerPage={handleChangeRowsPerPage}
           />
         </Paper>
-        <Link to="/users/create">Create</Link>
+        <Button variant="contained" id="createButton" onClick={() => onCreateClick()}>
+          Create
+        </Button>
       </div>
     );
   }

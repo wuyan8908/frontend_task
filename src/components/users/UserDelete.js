@@ -3,28 +3,52 @@
 import React, { memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '@material-ui/core/Button';
-import Container from '@material-ui/core/Container';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 import { requestUserDelete } from '../../store/auth';
+import history from '../../history';
 
-function deleteUser(id, dispatch, token) {
-  dispatch(requestUserDelete(id, token));
-}
 function UserDelete(props) {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.token);
   const { id } = props.match.params;
+  const [open, setOpen] = React.useState(true);
+  const deleteUser = () => {
+    dispatch(requestUserDelete(id, token));
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    history.push('/users');
+  };
+  const title = 'Are you sure to delete this user?';
   return (
-    <Container component="main" maxWidth="xs">
-      <div> do you want to delete </div>
-      <Button
-        type="submit"
-        variant="contained"
-        color="primary"
-        onClick={() => deleteUser(id, dispatch, token)}
+    <div>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
       >
-        Confirm
-      </Button>
-    </Container>
+        <DialogTitle id="alert-dialog-title">{title}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            It will permently delete the user.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={deleteUser} color="primary" autoFocus>
+            Confirm
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </div>
   );
 }
 

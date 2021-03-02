@@ -189,7 +189,7 @@ function EditForm(props) {
                 helperText={formik.touched.slack_username && formik.errors.slack_username}
               />
             </Grid>
-            <Grid item xs={12} sm={5}>
+            <Grid item xs={12} sm={6}>
               <Button
                 type="submit"
                 fullWidth
@@ -200,13 +200,12 @@ function EditForm(props) {
                 Submit
               </Button>
             </Grid>
-            <Grid item xs={12} sm={5}>
+            <Grid item xs={12} sm={6}>
               <Button
                 type="button"
                 fullWidth
                 variant="contained"
                 color="primary"
-                align="right"
                 className={classes.submit}
                 onClick={() => {
                   backToList();

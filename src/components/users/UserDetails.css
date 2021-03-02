@@ -1,0 +1,15 @@
+.itemDetail{
+    margin-top: 30px;
+  }
+
+#DetailList p{
+    font-size: 20px; 
+}
+
+#DetailList p span{
+    font-weight:bold;
+    margin-right: 10px;
+}
+.activeIcon{
+    padding-top: 20%;
+}

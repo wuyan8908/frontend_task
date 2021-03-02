@@ -13,6 +13,11 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { requestUserCreate } from '../../store/auth';
+import history from '../../history';
+
+function backToList() {
+  history.push('/users');
+}
 
 function UserCreate() {
   const dispatch = useDispatch();
@@ -176,21 +181,32 @@ function UserCreate() {
                 helperText={formik.touched.slack_username && formik.errors.slack_username}
               />
             </Grid>
-            {/* <Grid item xs={12}>
-                <FormControlLabel  control={<Checkbox value="true" color="primary" />}
-                    label="Remember me"
-                />
-              </Grid> */}
+            <Grid item xs={12} sm={6}>
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+              >
+                Submit
+              </Button>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+                onClick={() => {
+                  backToList();
+                }}
+              >
+                Cancel
+              </Button>
+            </Grid>
           </Grid>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Sign Up
-          </Button>
         </form>
       </div>
     </Container>

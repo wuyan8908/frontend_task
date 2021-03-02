@@ -6,7 +6,11 @@ import CheckIcon from '@material-ui/icons/Check';
 import ClearIcon from '@material-ui/icons/Clear';
 import { Link } from 'react-router-dom';
 import { Container } from '@material-ui/core';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
 import { requestUserDetail } from '../../store/auth';
+import './UserDetails.css';
 
 function UserDetails(props) {
   const token = useSelector((state) => state.token);
@@ -19,17 +23,37 @@ function UserDetails(props) {
   const data = useSelector((state) => state.userDetail);
   if (data) {
     return (
-      <Container maxWidth="xs">
-        <div className="item" key={data.users.id}>
-          <div>id: {data.users.id}</div>
-          <div>email: {data.users.email}</div>
-          <div>first_name: {data.users.first_name}</div>
-          <div>last_name: {data.users.last_name}</div>
-          <div>jobs_count: {data.users.jobs_count}</div>
-          <div>active: {data.users.active ? <CheckIcon /> : <ClearIcon />}</div>
-          <div>slack_username: {data.users.slack_username}</div>
-          <Link to="/users">Back to List</Link>
-        </div>
+      <Container className="itemDetail" maxWidth="xs">
+        <Card>
+          <CardContent>
+            <div id="DetailList" key={data.users.id}>
+              <p>
+                <span>id: </span> {data.users.id}
+              </p>
+              <p>
+                <span>email: </span> {data.users.email}
+              </p>
+              <p>
+                <span>first_name: </span> {data.users.first_name}
+              </p>
+              <p>
+                <span>last_name: </span> {data.users.last_name}
+              </p>
+              <p>
+                <span>jobs_count: </span> {data.users.jobs_count}
+              </p>
+              <p>
+                <span>active: </span> {data.users.active ? <CheckIcon /> : <ClearIcon />}
+              </p>
+              <p>
+                <span>slack_username:</span> {data.users.slack_username}
+              </p>
+            </div>
+          </CardContent>
+          <CardActions>
+            <Link to="/users">Back to List</Link>
+          </CardActions>
+        </Card>
       </Container>
     );
   }

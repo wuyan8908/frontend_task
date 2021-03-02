@@ -1,20 +1,20 @@
-# Intro
+## Intro
 
 This is a Readme file for React frontend development task. 
-1. To visit the website demo please follow the URL bellow:
-  https://www.frontendyanwu.tk/
-2. To test the project in localhost. Please follow the code bellow:
-  git clone https://github.com/wuyan8908/frontend_task.git
+1. To visit the website demo please follow the URL bellow:  
+   https://www.frontendyanwu.tk/
+2. To test the project in localhost. Please follow the code bellow:  
+  `git clone https://github.com/wuyan8908/frontend_task.git`
   - Open Terminal and Change to project folder using the command bellow:
-    - yarn install
+    - `yarn install`
   - To test in localhost using:
-    - yarn start
+    - `yarn start`
   - You also can run the project after build with:
-    - yarn build
+    - `yarn build`
   - Add testing server:
-    - yarn global add serve
+    - `yarn global add serve`
   - Test the project build in localhost:
-    - serve -s build 
+    - `serve -s build` 
 
 ## Task Check List
 
@@ -43,18 +43,17 @@ This is a Readme file for React frontend development task.
 
 ## Project detail intro
 
-1. 'src' folder: 
-  - All the Pages and Apis store in this folder
-   - components: store the views for the website and some function components such as forms.
-   - mockServer: provide the mock APIs for this project to test the functions in the frontend.
-   - sagas: store the files that 'redux-saga' needs. 
+- 'src' folder: All the Pages and Apis store in this folder
+  - components: store the views for the website and some function components such as forms.
+  - mockServer: provide the mock APIs for this project to test the functions in the frontend.
+  - sagas: store the files that 'redux-saga' needs. 
     - handlers: for the API calling and data storing functions. 
     - requests: for the API request functions.
     - rootSaga: store the watchers of 'redux-saga'
-   - store: store the 'redux' data.
-   - APP.js: handle the Routers for the project.
-   - history.js: provide history function for the project.
-   - Index.js: provide store creating, saga setting and data persist.
+  - store: store the 'redux' data.
+  - APP.js: handle the Routers for the project.
+  - history.js: provide history function for the project.
+  - Index.js: provide store creating, saga setting and data persist.
 
 ## To Do List
 
